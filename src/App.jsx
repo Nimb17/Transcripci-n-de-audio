@@ -87,9 +87,9 @@ main()
         <button onClick={handleClick}>Transcribir</button>
         <div className={style.container__formText}>Formatos: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm.</div>
         
-        {/* <div className={style.container__respuesta}>
+        <div className={style.container__respuesta}>
           <p>{resultado2}</p>
-        </div> */}
+        </div>
 
         {/* <div className={style.container__respuesta}>
 
