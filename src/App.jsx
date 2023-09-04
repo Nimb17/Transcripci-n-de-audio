@@ -70,7 +70,7 @@ main()
   return (
     <div className={style.container}>
       <section className={style.container__titulo}>
-        <h1>Audio a Texto: Resúmenes de Reuniones7</h1>        
+        <h1>Audio a Texto: Resúmenes de Reuniones</h1>        
         <p>Obten los principales puntos y resumenes de tus reuniones</p>
 
       </section>
