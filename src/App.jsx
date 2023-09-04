@@ -4,6 +4,7 @@ import style from './App.module.css';
 import { useDropzone } from 'react-dropzone';
 import Loader from './components/Loader';
 import { OpenAI } from 'openai'
+import ReactMarkdown from 'react-markdown'
 
 const AudioUpload = () => {
   const [file, setFile] = useState(null);
@@ -48,53 +49,57 @@ const AudioUpload = () => {
   useEffect(() => {
     async function main() {
       setLoading(true)
-      if (resultado !== null){
-         const completion = await openai.chat.completions.create({
-        messages: [{ role: 'user', content: `El siguiente texto proviene de una transcripcion de un meet y necesito que hagas nombres los principales puntos de esta reunion punto por punto y finalmente un resumen. y responde siempre en español:${resultado}` }],
-        model: 'gpt-3.5-turbo',
-      });
+      if (resultado !== null) {
+        const completion = await openai.chat.completions.create({
+          messages: [{
+            role: 'user', content: `El siguiente texto proviene de una transcripcion de un meet y necesito que nombres los principales puntos de esta reunion punto por punto y un pequeño detalle de cada punto y finalmente un resumen. tu respuesta debe ser siempre en español y usando la sintaxis y estructura profesional de markdown respetando titulo subtitulos, Texto en negrita, listas desordenadas etc:${resultado}`
+          }],
+          model: 'gpt-3.5-turbo-16k',
+          max_tokens: 3500,
+          temperature: 0.3,
+        });
 
-      setResultado2(completion.choices[0].message.content)      
-    }
-    setLoading(false)
+        setResultado2(completion.choices[0].message.content)
       }
-     
-main()
-   
+      setLoading(false)
+    }
+
+    main()
+
   }, [resultado])
 
- const handleClick = async () => {
-      await onFileUpload()
-    }  
+  const handleClick = async () => {
+    await onFileUpload()
+  }
 
   return (
     <div className={style.container}>
       <section className={style.container__titulo}>
-        <h1>Audio a Texto: Resúmenes de Reuniones</h1>        
+        <h1>Audio a Texto: Resúmenes de Reuniones</h1>
         <p>Obten los principales puntos y resumenes de tus reuniones</p>
 
       </section>
       <section className={style.container__form}>
         <article {...getRootProps()} className={`${style.upFile} ${isDragActive || file ? style.upFile_active : null}`}>
           <input {...getInputProps()} />
-          {loading ?  <div className={style.container__loading}><Loader /> espere un momento...</div>   :
+          {loading ? <div className={style.container__loading}><Loader /> espere un momento...</div> :
             isDragActive ?
               <p className={style.container__textUP}>Suelta el archivo de audio aquí... </p> :
-              !file ? <div className={style.container__text}><p className={style.container__textUP}>Arrastra y suelta tu audio aquí</p> <p className={style.container__textUP}>-- o --</p> <p className={style.container__textBT}>haz clic para seleccionar un archivo</p></div> : <div><p className={style.container__textUP}>Archivo seleccionado:</p> {file.name}</div> 
+              !file ? <div className={style.container__text}><p className={style.container__textUP}>Arrastra y suelta tu audio aquí</p> <p className={style.container__textUP}>-- o --</p> <p className={style.container__textBT}>haz clic para seleccionar un archivo</p></div> : <div><p className={style.container__textUP}>Archivo seleccionado:</p> {file.name}</div>
           }
-        </article>        
+        </article>
 
         <button onClick={handleClick}>Transcribir</button>
         <div className={style.container__formText}>Formatos: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm.</div>
-        
+
         <div className={style.container__respuesta}>
-          <p>{resultado2}</p>
+          <ReactMarkdown>{resultado2}</ReactMarkdown>
         </div>
 
-        {/* <div className={style.container__respuesta}>
+        <div className={style.container__respuesta}>
 
           {resultado && <p className={style.container__resultado}>{resultado}</p>}
-        </div> */}
+        </div>
 
       </section>
 
