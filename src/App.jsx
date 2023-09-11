@@ -56,7 +56,7 @@ const AudioUpload = () => {
           }],
           model: 'gpt-3.5-turbo-16k',
           max_tokens: 3500,
-          temperature: 0.3,
+          temperature: 0.1,
         });
 
         setResultado2(completion.choices[0].message.content)
