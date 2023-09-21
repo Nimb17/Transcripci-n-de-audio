@@ -21,6 +21,8 @@ const AudioUpload = () => {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   const onFileUpload = async () => {
+    setResultado(null)
+    setResultado2(null)
     setLoading(true)
     const formData = new FormData();
     formData.append('file', file);
@@ -80,12 +82,8 @@ const AudioUpload = () => {
 
   }, [resultado])
 
-  const handleClick = async () => {
-    setResultado("")
-    setResultado2("")
+  const handleClick = async () => {    
     await onFileUpload()
-
-    
   }
 
   return (
