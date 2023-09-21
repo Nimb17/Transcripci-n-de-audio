@@ -52,7 +52,19 @@ const AudioUpload = () => {
       if (resultado !== null) {
         const completion = await openai.chat.completions.create({
           messages: [{
-            role: 'user', content: `El siguiente texto proviene de una transcripcion de un meet y necesito que nombres los principales puntos de esta reunion punto por punto y un pequeño detalle de cada punto y finalmente un resumen. tu respuesta debe ser siempre en español y usando la sintaxis y estructura profesional de markdown respetando titulo subtitulos, Texto en negrita, listas desordenadas etc:${resultado}`
+            role: 'user', content: `
+            Usa la sintaxis y estructura profesional de markdown respetando titulo subtitulos, Texto en negrita, listas desordenadas etc (si encuentras la palabra "Cuba o cua" en realidad es Q.A) para la siguiente transcripcion de una reunion de Meet: ${resultado} (ejemplo de la estructura que se espera respetando los 6 puntos):
+              1. titulo de la reunion
+  
+              2. **Objetivo de la reunión**: Esboza el propósito o los objetivos de la reunión.
+              
+              3. **Agenda**: Enumera los temas que se discutieron en la reunión.
+              
+              4. **Detalles de la discusión**: Este es el cuerpo principal del resumen. Aquí se incluirán los puntos de discusión de cada tema en la agenda, las ideas compartidas, y las decisiones tomadas. Debe estar estructurado de manera que cada tema discutido tenga su propio subtítulo y debajo de este, los puntos discutidos.
+              
+              5. **Acciones a seguir**: Enumera todas las tareas o acciones que se acordaron durante la reunión, incluyendo quién es responsable de cada tarea y cualquier fecha límite relevante.
+              
+              6. **Conclusiones**: Aquí debes resumir brevemente las conclusiones de la reunión. ¿Se lograron los objetivos de la reunión? ¿Qué se espera que ocurra como resultado de la reunión?)`
           }],
           model: 'gpt-3.5-turbo-16k',
           max_tokens: 3500,
@@ -69,7 +81,11 @@ const AudioUpload = () => {
   }, [resultado])
 
   const handleClick = async () => {
+    setResultado("")
+    setResultado2("")
     await onFileUpload()
+
+    
   }
 
   return (
