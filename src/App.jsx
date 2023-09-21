@@ -53,7 +53,7 @@ const AudioUpload = () => {
         const completion = await openai.chat.completions.create({
           messages: [{
             role: 'user', content: `
-            Usa la sintaxis y estructura profesional de markdown respetando titulo subtitulos, Texto en negrita, listas desordenadas etc (si encuentras la palabra "Cuba o cua" en realidad es Q.A) para la siguiente transcripcion de una reunion de Meet: ${resultado} (ejemplo de la estructura que se espera respetando los 6 puntos):
+            Usa la sintaxis y estructura profesional de markdown respetando titulo subtitulos, Texto en negrita, listas desordenadas etc (si encuentras la palabra "Cuba o cua" en realidad es Q.A) para la siguiente transcripcion de una reunion de Meet: " ${resultado} ".(sigue este ejemplo de la estructura respetando los 6 puntos):
               1. titulo de la reunion
   
               2. **Objetivo de la reunión**: Esboza el propósito o los objetivos de la reunión.
