@@ -115,7 +115,7 @@
 
 .containerModal {
   display: flex;
-  flex-direction: column;
+  flex-direction: column;  
 }
 .containerModal h1 {
   padding: 20px 20px;
@@ -160,4 +160,10 @@
   bottom: 0;
   background: rgba(0, 0, 0, 0.684);
   z-index: 1000;
+}
+
+@media (max-width: 830px) {
+  .containerModal{
+    height: 90dvh;     
+  }
 }
