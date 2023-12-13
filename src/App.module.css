@@ -5,15 +5,14 @@
   justify-content: center;
   text-align: center;
   max-width: 800px;
-  padding: 20px;
+  padding: 0 20px;
   height: 100dvh;
   margin: 0 auto;
 }
 
 .container__titulo {
-  max-width: 700px;
-  margin-top: 40px;
-  margin-bottom: 100px;
+  max-width: 700px; 
+  margin-bottom: 60px;
 }
 
 .container__titulo h1 {
@@ -165,5 +164,12 @@
 @media (max-width: 830px) {
   .containerModal{
     height: 90dvh;     
+  }
+}
+
+@media (max-width: 500px) {
+  .container__titulo h1 {
+    font-size: 45px;
+    
   }
 }
