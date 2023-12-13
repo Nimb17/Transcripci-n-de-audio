@@ -6,6 +6,7 @@ import Loader from './components/Loader';
 import { OpenAI } from 'openai'
 import ReactMarkdown from 'react-markdown'
 import Modal from 'react-modal';
+import Recording from './components/Recording/Recording';
 
 const AudioUpload = () => {
   const [file, setFile] = useState(null);
@@ -134,6 +135,7 @@ const AudioUpload = () => {
       <section className={style.container__titulo}>
         <h1>Audio a Texto: Resúmenes de Reuniones</h1>
         <p>Obten los principales puntos y resumenes de tus reuniones</p>
+        <Recording />
 
       </section>
       <section className={style.container__form}>
