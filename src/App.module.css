@@ -11,7 +11,7 @@
 }
 
 .container__titulo {
-  max-width: 700px; 
+  max-width: 700px;
   margin-bottom: 60px;
 }
 
@@ -67,7 +67,6 @@
 }
 
 .container__formText {
-  margin-bottom: 25px;
   font-size: 14px;
   color: #585858;
 }
@@ -114,7 +113,7 @@
 
 .containerModal {
   display: flex;
-  flex-direction: column;  
+  flex-direction: column;
 }
 .containerModal h1 {
   padding: 20px 20px;
@@ -162,14 +161,13 @@
 }
 
 @media (max-width: 830px) {
-  .containerModal{
-    height: 90dvh;     
+  .containerModal {
+    height: 90dvh;
   }
 }
 
 @media (max-width: 500px) {
   .container__titulo h1 {
     font-size: 45px;
-    
   }
 }
