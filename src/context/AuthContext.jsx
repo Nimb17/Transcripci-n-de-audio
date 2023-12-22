@@ -5,8 +5,6 @@ import { useNavigate, redirect } from "react-router-dom";
 const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
-    /*  const navigate = useNavigate(); */
-
     const [imgProfile, setImgProfile] = useState();
     const [name, setName] = useState();
     const [email, setEmail] = useState();
@@ -14,20 +12,9 @@ export const AuthContextProvider = ({ children }) => {
     const [email2, setEmail2] = useState();
     const [id, setId] = useState();
     const [errorLogin, setErrorLogin] = useState();
+    const [token, setToken] = useState();
 
     const navigate = useNavigate();
-
-
-    /* const signInWithEmail = async (email) => {
-        const { data, error } = await supabase.auth.signInWithOtp({
-            email: email,
-            options: {
-                // set this to false if you do not want the user to be automatically signed up
-                shouldCreateUser: true,
-                emailRedirectTo: 'https://example.com/welcome',
-            },
-        })
-    } */   
 
     /* REGISTRO */
     const signUpNewUser = async (inputEmail, inputPass) => {
@@ -38,12 +25,8 @@ export const AuthContextProvider = ({ children }) => {
                 shouldCreateUser: false,
                 emailRedirectTo: 'https//example.com/welcome'
             }
-        })
-        console.log(inputEmail ? `${inputEmail} ${inputPass}` : null);
+        })      
     }
-
-
-
 
     /* LOGIN */
     const signInWithEmail = async (inputEmail, inputPass) => {
@@ -51,10 +34,11 @@ export const AuthContextProvider = ({ children }) => {
             email: inputEmail,
             password: inputPass,
         })
-        setErrorLogin(error);       
-        if (data.user) {            
+        setToken(data.session.access_token);
+        setErrorLogin(error);
+        if (data.user) {
             navigate("/Home");
-        }      
+        }     
     }
 
     /* SIGNOUT */
@@ -65,11 +49,10 @@ export const AuthContextProvider = ({ children }) => {
     };
 
     useEffect(() => {
-if (user){
-      const getSupa = async () => {
+        const getSupa = async () => {
             const { data: { user }, error, } = await supabase.auth.getUser();
             setUser(user)
-            if (user){
+            if(user){
                 navigate("/Home");
             }
             else{
@@ -77,10 +60,7 @@ if (user){
             }
         };
         getSupa();
-}
-        
-      
-    }, []);
+    }, []);   
 
     const getSupa = async () => {
         const { data: { user }, error, } = await supabase.auth.getUser();
@@ -88,7 +68,7 @@ if (user){
     };
 
 
-    useEffect(() => {
+    /* useEffect(() => {
         supabase.auth.onAuthStateChange(async (event, session) => {
             if (event == "PASSWORD_RECOVERY") {
                 const newPassword = prompt("Por favor, crea tu nueva contraseña");
@@ -97,9 +77,9 @@ if (user){
 
                 if (data) alert("¡Contraseña actualizada exitosamente!")
                 if (error) alert("Hubo un error al actualizar su contraseña.")
-            }/* console.log(event) */
+            }
         })
-    }, [])
+    }, []) */
 
     return (
         <AuthContext.Provider
@@ -109,7 +89,8 @@ if (user){
                 signout,
                 user,
                 getSupa,
-                errorLogin
+                errorLogin,
+                token
             }}
         >
             {children}

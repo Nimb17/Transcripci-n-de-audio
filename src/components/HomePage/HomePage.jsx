@@ -9,13 +9,17 @@ import Modal from 'react-modal';
 import { UserAuth } from '../../context/AuthContext';
 
 const HomePage = () => {
-  const { signout, user, } = UserAuth()
+  const { signout, user, token, getSupa } = UserAuth()
 
   const [file, setFile] = useState(null);
   const [resultado, setResultado] = useState(null);
   const [resultado2, setResultado2] = useState(null);
   const [loading, setLoading] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false); //modal    
+
+  useEffect(() => {
+    getSupa()
+  }, [])
 
   const closeModal = () => {
     setModalIsOpen(false)
@@ -100,7 +104,7 @@ const HomePage = () => {
   }, [resultado2])
 
   const handleClick = async () => {
-    if (user){
+    if (user) {
       await onFileUpload()
     }
   }
@@ -128,7 +132,7 @@ const HomePage = () => {
       </Modal>
       <section className={style.container__titulo}>
         <h1>Audio a Texto: Resúmenes de Reuniones</h1>
-        <p>Obten los principales puntos y resumenes de tus reuniones</p>        
+        <p>Obten los principales puntos y resumenes de tus reuniones</p>
 
       </section>
       <section className={style.container__form}>
@@ -158,7 +162,7 @@ const HomePage = () => {
           </p>
         </div>} */}
 
-        <button className={style.btnLoginOut} onClick={() => signout() }>Cerrar sesión</button>      
+        <button className={style.btnLoginOut} onClick={() => signout()}>Cerrar sesión</button>
 
       </section>
 
