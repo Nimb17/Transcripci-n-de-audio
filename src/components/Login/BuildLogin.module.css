@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  height: 100dvh;
+  max-width: 500px;
+  padding: 0 20px;
+}
+
+.textError {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+  background-color: #f8d7da;
+  padding: 10px;
+  border-radius: 5px;
+  width: 100%;
+  text-align: center;
+}

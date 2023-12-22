@@ -12,13 +12,15 @@
   "dependencies": {
     "@ffmpeg/core": "^0.12.4",
     "@ffmpeg/ffmpeg": "^0.12.7",
+    "@supabase/supabase-js": "^2.39.1",
     "axios": "^1.4.0",
     "openai": "^4.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-dropzone": "^14.2.3",
     "react-markdown": "^8.0.7",
-    "react-modal": "^3.16.1"
+    "react-modal": "^3.16.1",
+    "react-router-dom": "^6.21.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
