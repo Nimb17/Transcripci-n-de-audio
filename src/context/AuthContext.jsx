@@ -34,7 +34,7 @@ export const AuthContextProvider = ({ children }) => {
             email: inputEmail,
             password: inputPass,
         })
-        setToken(data.session.access_token);
+        setToken(data);
         setErrorLogin(error);
         if (data.user) {
             navigate("/Home");
