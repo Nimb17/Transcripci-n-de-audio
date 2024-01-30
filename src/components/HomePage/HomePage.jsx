@@ -42,6 +42,7 @@ const HomePage = () => {
     const formData = new FormData();
     formData.append('file', file);
     formData.append('model', 'whisper-1');
+    formData.append('language', 'es');
 
     try {
       const response = await axios.post('https://api.openai.com/v1/audio/transcriptions',
@@ -91,7 +92,7 @@ const HomePage = () => {
           }],
           model: "gpt-3.5-turbo-1106",
           max_tokens: 3500,
-          temperature: 0,
+          temperature: 0,          
         });
 
         setResultado2(completion.choices[0].message.content)
