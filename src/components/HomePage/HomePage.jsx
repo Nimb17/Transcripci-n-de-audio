@@ -90,7 +90,7 @@ const HomePage = () => {
               
               7. **Conclusiones**: Aquí debes resumir brevemente las conclusiones de la reunión. ¿Se lograron los objetivos de la reunión? ¿Qué se espera que ocurra como resultado de la reunión?)`
           }],
-          model: "gpt-3.5-turbo-1106",
+          model: "gpt-3.5-turbo-0125",
           max_tokens: 3500,
           temperature: 0,          
         });
